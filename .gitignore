@@ -1,5 +1,1 @@
-# Ignore cache file created by the PHP CS Fixer tool
-/.php_cs.cache
-
-# Ignore tests output
-/tests/tidy/tmp-fixtures
+/php-src

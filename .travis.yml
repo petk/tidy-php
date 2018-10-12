@@ -1,11 +1,6 @@
-sudo: required
-
-services:
-  - docker
-
-jobs:
-  include:
-    - stage: Tests
-      script: ./tests/test.sh
-    - stage: Coding style
-      script: ./tests/php-cs-fixer.sh
+languages: php
+php:
+  - '7.2'
+script:
+  - ./run.sh
+  - ./php-src/scripts/dev/tidy.php php-src
