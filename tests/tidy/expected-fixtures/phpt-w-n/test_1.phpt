@@ -9,4 +9,5 @@ echo 'Hello World';
 ?>
 --EXPECT--
 
+
 Hello World

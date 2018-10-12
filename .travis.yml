@@ -1,9 +1,7 @@
-language: php
+sudo: required
 
-php:
-  - '7.1'
-  - '7.2'
-  - nightly
+services:
+  - docker
 
 script:
   - ./tests/test.sh

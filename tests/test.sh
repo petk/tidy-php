@@ -1,14 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-files=`ls tests/tidy | grep "\.sh$"`
-i=0
+# Build Docker image
+docker build -t petk/tidy-tests -f ./tests/Dockerfile . || exit 1
 
-for file in $files; do
-  echo "=============================="
-  echo "testing $file"
-  echo "=============================="
-  ./tests/tidy/$file || i=$((i+1))
-  echo
-done
+BATS="docker run -it -v `pwd`:/opt/app -w /opt/app petk/tidy-tests:latest bats"
 
-exit $i;
+$BATS tests/tidy

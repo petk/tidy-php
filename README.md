@@ -4,7 +4,7 @@
 
 ## Tests
 
-Tests are written in a simplistic manner using POSIX shell scripts only.
+Tests are written in a simplistic manner using bash and with [Bats](https://github.com/bats-core/bats-core).
 
 ```bash
 ./tests/test.sh
