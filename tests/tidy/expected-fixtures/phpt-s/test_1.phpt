@@ -2,7 +2,7 @@
 Bug #35382 (Comment in end of file produces fatal error)    
 --FILEEOF--    
 <?php    
- 	  echo 'Hello World';    
+	  echo 'Hello World';    
 //last line comment    
 ?>    
 ===DONE===
