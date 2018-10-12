@@ -5,3 +5,4 @@ services:
 
 script:
   - ./tests/test.sh
+  - ./tests/php-cs-fixer.sh
