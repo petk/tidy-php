@@ -1325,27 +1325,12 @@ function tidyFile(string $file): bool
     return true;
 }
 
+/**
+ * PHP code specific trimming of trailing whitespace.
+ */
 function trimTrailingWhitespaceFromPhp(string $source): string
 {
-    return tidyPhpCode($source, function ($src) {
-        return trimTrailingWhitespace($src);
-    });
-}
-
-function cleanSpaceBeforeTabFromPhp(string $source): string
-{
-    return tidyPhpCode($source, function ($src) {
-        return cleanSpaceBeforeTab($src);
-    });
-}
-
-/**
- * Clean PHP code by using regex or Tokenizer extension.
- */
-function tidyPhpCode(string $source, callable $callback): string
-{
-    $buffer = '';
-
+    // If the tokenizer extension is not enabled several patterns are used.
     if (!extension_loaded('tokenizer')) {
         $patterns = [
             '/(*BSR_ANYCRLF)(\<\?php)[\t ]+(\R|$)/m',
@@ -1360,16 +1345,37 @@ function tidyPhpCode(string $source, callable $callback): string
         ];
 
         foreach ($patterns as $pattern) {
-            $buffer = preg_replace($pattern, '$1$2', $buffer);
+            $source = preg_replace($pattern, '$1$2', $source);
         }
 
-        return $buffer;
+        return $source;
     }
 
+    return tidyPhpCode($source, function ($src) {
+        return trimTrailingWhitespace($src);
+    });
+}
+
+/**
+ * PHP code specific spaces before tabs cleaning.
+ */
+function cleanSpaceBeforeTabFromPhp(string $source): string
+{
+    return tidyPhpCode($source, function ($src) {
+        return cleanSpaceBeforeTab($src);
+    });
+}
+
+/**
+ * Clean PHP code by using regex or Tokenizer extension.
+ */
+function tidyPhpCode(string $source, callable $callback): string
+{
     // @ suppresses warning: octal escape sequence overflow \542 is greater than \377
     $tokens = @token_get_all($source);
 
     $content = '';
+    $buffer = '';
 
     foreach ($tokens as $i => $token) {
         if (is_string($token)) {
