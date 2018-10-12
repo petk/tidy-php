@@ -152,15 +152,15 @@ function help(): string
     | --CGI--                  | yes |  yes  | crlf<->lf | yes | yes |
     | --PHPDBG--               | yes |  yes  | crlf<->lf | yes | yes |
     | --XFAIL--                | yes |  yes  | crlf<->lf | yes | yes |
-    | --CLEAN--                | PHP |  yes  | crlf<->lf | yes | yes |
+    | --CLEAN--                | PHP |  yes  | crlf<->lf | yes | PHP |
     | --POST--                 | no  |  yes  | crlf<->lf | yes | no  |
     | --POST_RAW--             | no  |  yes  | crlf<->lf | yes | no  |
     | --GZIP_POST--            | no  |  yes  | crlf<->lf | yes | no  |
     | --DEFLATE_POST--         | no  |  yes  | crlf<->lf | yes | no  |
     | --PUT--                  | yes |  yes  | crlf<->lf | yes | yes |
     | --GET--                  | yes |  yes  | crlf<->lf | yes | yes |
-    | --FILE--                 | PHP |  yes  | crlf<->lf | yes | yes |
-    | --FILEEOF--              | PHP |  yes  | crlf<->lf | yes | yes |
+    | --FILE--                 | PHP |  yes  | crlf<->lf | yes | PHP |
+    | --FILEEOF--              | PHP |  yes  | crlf<->lf | yes | PHP |
     | --FILE_EXTERNAL--        | yes |  yes  | crlf<->lf | yes | yes |
     | --EXPECT--               | no  |  yes  | crlf<->lf | yes | no  |
     | --EXPECTF--              | no  |  yes  | crlf<->lf | yes | no  |
@@ -1175,7 +1175,6 @@ function tidyPhpTestFile(string $file): array
             '--FILEEOF--',
             '--CLEAN--',
             ], true)) {
-
             if ($opt['trim_trailing_whitespace']) {
                 $buffer = trimTrailingWhitespaceFromPhp($buffer);
             }
@@ -1193,7 +1192,6 @@ function tidyPhpTestFile(string $file): array
                 $logs[] = $sectionRealName.' space before tab';
                 $section = $buffer;
             }
-
         } elseif (in_array($sectionRealName, [
             '--TEST--',
             '--DESCRIPTION--',
@@ -1332,14 +1330,14 @@ function tidyFile(string $file): bool
 
 function trimTrailingWhitespaceFromPhp(string $source): string
 {
-    return tidyPhpCode($source, function($src) {
+    return tidyPhpCode($source, function ($src) {
         return trimTrailingWhitespace($src);
     });
 }
 
 function cleanSpaceBeforeTabFromPhp(string $source): string
 {
-    return tidyPhpCode($source, function($src) {
+    return tidyPhpCode($source, function ($src) {
         return cleanSpaceBeforeTab($src);
     });
 }
