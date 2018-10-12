@@ -27,3 +27,10 @@ Try 'php tidy.php --help' for more info." ]
   [ "$output" = "tidy.php: invalid option(s) '--trim-trailing-newlines=0'
 Try 'php tidy.php --help' for more info." ]
 }
+
+@test "invoking tidy with long invalid options" {
+  run php tidy.php --non-existent-option --second-non-existent-option -w tests/tidy/tmp-fixtures
+  [ "$status" -eq 1 ]
+  [ "$output" = "tidy.php: invalid option(s) '--non-existent-option, --second-non-existent-option'
+Try 'php tidy.php --help' for more info." ]
+}

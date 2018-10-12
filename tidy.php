@@ -574,10 +574,10 @@ function getInvalidOptions(string $shortOptions, array $longOptions, array $argv
 
     foreach ($argv as $i => $argument) {
         // Discover possible unknown long passed options
-        if (preg_match('/^\-\-([a-z\-]+)\=?.*/i', $argument, $matches)) {
-            if (!in_array($matches[1], str_replace(':', '', $longOptions), true)) {
-                $unknown[] = $argument;
-            }
+        if (preg_match('/^\-\-([a-z\-]+)\=?.*/i', $argument, $matches)
+            && !in_array($matches[1], str_replace(':', '', $longOptions), true)
+        ) {
+            $unknown[] = $argument;
         }
 
         // Discover possible unknown short passed options
@@ -587,7 +587,7 @@ function getInvalidOptions(string $shortOptions, array $longOptions, array $argv
     }
 
     if (!empty($unknown)) {
-        return "invalid option(s) '".implode($unknown, ',')."'";
+        return "invalid option(s) '".implode($unknown, ', ')."'";
     }
 
     return null;
