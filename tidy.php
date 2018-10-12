@@ -633,8 +633,6 @@ function check(array $opt): void
     if (!extension_loaded('mbstring')) {
         output('**WARN**: Enable mbstring extension for reporting file encodings.');
     }
-
-    return;
 }
 
 /**
@@ -875,9 +873,9 @@ function convertEol(string $content, $file, bool $enableCr = false): string
 {
     if ($enableCr) {
         return preg_replace('/(*BSR_ANYCRLF)\R/m', getDefaultEol($file), $content);
-    } else {
-        return preg_replace('/(?>\r\n|\n)/m', getDefaultEol($file), $content);
     }
+
+    return preg_replace('/(?>\r\n|\n)/m', getDefaultEol($file), $content);
 }
 
 /**
@@ -958,7 +956,7 @@ function hasGit(?string $path = null): bool
         return $hasGit = false;
     }
 
-    if ($path !== null && is_dir($path) && file_exists($path.'/.git')) {
+    if (null !== $path && is_dir($path) && file_exists($path.'/.git')) {
         return $hasGit = true;
     }
 
