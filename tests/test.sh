@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Build Docker image
 docker build -t petk/tidy-tests -f ./tests/Dockerfile . || exit 1
