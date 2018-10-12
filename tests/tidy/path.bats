@@ -1,8 +1,7 @@
 #!/usr/bin/env bats
 
 setup() {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 }
 
 @test "Testing missing path 1" {

@@ -1,8 +1,7 @@
 #!/usr/bin/env bats
 
 setup() {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 }
 
 @test "Trim final newlines and leave 3 if present. No whitespace fixes" {
@@ -15,13 +14,13 @@ setup() {
   for file in $files; do
     base=$(basename $file)
 
-    [ "$(cmp $file tests/tidy/tmp-fixtures/eol-3/$base)" = "" ]
+    out=$(cmp $file tests/tidy/tmp-fixtures/eol-3/$base)
+    [ "$out" = "" ]
   done
 }
 
 @test "Trim final newlines and leave 0 final newlines. No whitespace fixes" {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 
   run php tidy.php --trim-final-newlines=0 --no-backup -f -q tests/tidy/tmp-fixtures/eol-0
 
@@ -33,6 +32,7 @@ setup() {
   for file in $files; do
     base=$(basename $file)
 
-    [ "$(cmp $file tests/tidy/tmp-fixtures/eol-0/$base)" = "" ]
+    out=$(cmp $file tests/tidy/tmp-fixtures/eol-0/$base)
+    [ "$out" = "" ]
   done
 }

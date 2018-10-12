@@ -1,8 +1,7 @@
 #!/usr/bin/env bats
 
 setup() {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 }
 
 @test "Proper output if file is not a test" {
@@ -15,7 +14,8 @@ setup() {
   for file in $files; do
     base=$(basename $file)
 
-    [ "$(cmp $file tests/tidy/tmp-fixtures/phpt-w/$base)" = "" ]
+    out=$(cmp $file tests/tidy/tmp-fixtures/phpt-w/$base)
+    [ "$out" = "" ]
   done
 }
 
@@ -26,8 +26,7 @@ setup() {
 }
 
 @test "php tests fixes with newlines" {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 
   run php tidy.php -n -N --trim-trailing-whitespace --no-backup -f -q tests/tidy/tmp-fixtures/phpt-w-n
   [ "$status" -eq 1 ]
@@ -38,13 +37,13 @@ setup() {
   for file in $files; do
     base=$(basename $file)
 
-    [ "$(cmp $file tests/tidy/tmp-fixtures/phpt-w-n/$base)" = "" ]
+    out=$(cmp $file tests/tidy/tmp-fixtures/phpt-w-n/$base)
+    [ "$out" = "" ]
   done
 }
 
 @test "php tests fixes with newlines and EOL conversions" {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 
   run php tidy.php -w -n -N -e -l --no-backup -f -q tests/tidy/tmp-fixtures/phpt-w-n-e
   [ "$status" -eq 1 ]
@@ -55,13 +54,13 @@ setup() {
   for file in $files; do
     base=$(basename $file)
 
-    [ "$(cmp $file tests/tidy/tmp-fixtures/phpt-w-n-e/$base)" = "" ]
+    out=$(cmp $file tests/tidy/tmp-fixtures/phpt-w-n-e/$base)
+    [ "$out" = "" ]
   done
 }
 
 @test "php tests fixes with basic fixing rules" {
-  rm -rf tests/tidy/tmp-fixtures
-  cp -r tests/tidy/source-fixtures tests/tidy/tmp-fixtures
+  load fixtures
 
   run php tidy.php -s --no-backup -f -q tests/tidy/tmp-fixtures/phpt-s
   [ "$status" -eq 0 ]
@@ -72,6 +71,7 @@ setup() {
   for file in $files; do
     base=$(basename $file)
 
-    [ "$(cmp $file tests/tidy/tmp-fixtures/phpt-s/$base)" = "" ]
+    out=$(cmp $file tests/tidy/tmp-fixtures/phpt-s/$base)
+    [ "$out" = "" ]
   done
 }
