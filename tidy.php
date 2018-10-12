@@ -143,9 +143,7 @@ function help(): string
     | --ENV--                  | yes |  yes  | crlf<->lf | yes | yes |
     | --EXTENSIONS--           | yes |  yes  | crlf<->lf | yes | yes |
     | --COOKIE--               | yes |  yes  | crlf<->lf | yes | yes |
-    | --HEADERS--              | yes |  yes  | crlf<->lf | yes | yes |
     | --ARGS--                 | yes |  yes  | crlf<->lf | yes | yes |
-    | --REQUEST--              | no  |  yes  | crlf<->lf | yes | no  |
     | --REDIRECTTEST--         | no  |  yes  | crlf<->lf | yes | no  |
     | --CAPTURE_STDIO--        | yes |  yes  | crlf<->lf | yes | yes |
     | --STDIN--                | no  |  yes  | crlf<->lf | yes | no  |
@@ -1201,7 +1199,6 @@ function tidyPhpTestFile(string $file): array
             '--ENV--',
             '--EXTENSIONS--',
             '--COOKIE--',
-            '--HEADERS--',
             '--ARGS--',
             '--CAPTURE_STDIO--',
             '--CGI--',
