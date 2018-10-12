@@ -14,5 +14,4 @@ if (false) {
 ?>
 --EXPECT--
 
-
 Hello World
