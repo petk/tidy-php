@@ -3,6 +3,9 @@ sudo: required
 services:
   - docker
 
-script:
-  - ./tests/test.sh
-  - ./tests/php-cs-fixer.sh
+jobs:
+  include:
+    - stage: Tests
+      script: ./tests/test.sh
+    - stage: Coding style
+      script: ./tests/php-cs-fixer.sh
