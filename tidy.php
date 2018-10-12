@@ -1367,7 +1367,7 @@ function cleanSpaceBeforeTabFromPhp(string $source): string
 }
 
 /**
- * Clean PHP code by using regex or Tokenizer extension.
+ * Clean PHP code by using a callback and a Tokenizer extension.
  */
 function tidyPhpCode(string $source, callable $callback): string
 {
