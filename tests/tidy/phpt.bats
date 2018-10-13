@@ -8,7 +8,7 @@ setup() {
   run php tidy.php --trim-trailing-whitespace --no-backup -f -q tests/tidy/tmp-fixtures/phpt-w
   [ "$status" -eq 1 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/phpt-w -type f`
 
   for file in $files; do
@@ -31,7 +31,7 @@ setup() {
   run php tidy.php -n -N --trim-trailing-whitespace --no-backup -f -q tests/tidy/tmp-fixtures/phpt-w-n
   [ "$status" -eq 1 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/phpt-w-n -type f`
 
   for file in $files; do
@@ -48,7 +48,7 @@ setup() {
   run php tidy.php -w -n -N -e -l --no-backup -f -q tests/tidy/tmp-fixtures/phpt-w-n-e
   [ "$status" -eq 1 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/phpt-w-n-e -type f`
 
   for file in $files; do
@@ -59,13 +59,13 @@ setup() {
   done
 }
 
-@test "php tests fixes with basic fixing rules" {
+@test "php tests fixes with space before tab fixing" {
   load fixtures
 
   run php tidy.php -s --no-backup -f -q tests/tidy/tmp-fixtures/phpt-s
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/phpt-s -type f`
 
   for file in $files; do
