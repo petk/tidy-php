@@ -624,6 +624,13 @@ function check(array $opt): void
     if (!extension_loaded('mbstring')) {
         output('**WARN**: Enable mbstring extension for reporting file encodings.');
     }
+
+    // The php-src repository requires Git
+    if (isThisPhpSrc($opt['path']) && !hasGit($opt['path'])) {
+        output(invalid('This seems to be php-src without Git. Obtain PHP with Git.'), false);
+
+        exit(1);
+    }
 }
 
 /**
