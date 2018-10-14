@@ -5,10 +5,10 @@ setup() {
 }
 
 @test "Insert final newline if missing. No whitespace fixes, no redundant EOL fixes." {
-  run php tidy.php --insert-final-newline --no-backup -f -q tests/tidy/tmp-fixtures/final-newline
+  run php tidy.php --insert-final-newline -f -q tests/tidy/tmp-fixtures/final-newline
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/final-newline -type f`
 
   for file in $files; do
@@ -22,10 +22,10 @@ setup() {
 @test "Set maximum newlines to zero and insert final newline if missing - edge case." {
   load fixtures
 
-  run php tidy.php --insert-final-newline --trim-final-newlines=0 --no-backup -f -q tests/tidy/tmp-fixtures/final-newline-2
+  run php tidy.php --insert-final-newline --trim-final-newlines=0 -f -q tests/tidy/tmp-fixtures/final-newline-2
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/final-newline-2 -type f`
 
   for file in $files; do

@@ -5,7 +5,7 @@ setup() {
 }
 
 @test "testing tidy.php with all rules enabled" {
-  run php tidy.php --no-backup -f -q tests/tidy/tmp-fixtures/all
+  run php tidy.php -f -q tests/tidy/tmp-fixtures/all
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 
@@ -22,7 +22,7 @@ setup() {
 @test "testing tidy.php with all rules options enabled (should be the same as previous test above)" {
   load fixtures
 
-  run php tidy.php -w -n -N -e --no-backup -f -q tests/tidy/tmp-fixtures/all
+  run php tidy.php -w -n -N -e -f -q tests/tidy/tmp-fixtures/all
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 

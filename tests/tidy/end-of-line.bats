@@ -5,7 +5,7 @@ setup() {
 }
 
 @test "Fix end of lines. No whitespace fixes, no redundant EOL fixes, no missing final new lines added." {
-  run php tidy.php --eol --no-backup -f -q tests/tidy/tmp-fixtures/end-of-line
+  run php tidy.php --eol -f -q tests/tidy/tmp-fixtures/end-of-line
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 
@@ -22,7 +22,7 @@ setup() {
 @test "Fix end of lines using manual EOL. No whitespace fixes, no redundant EOL fixes, no missing final new lines added." {
   load fixtures
 
-  run php tidy.php --eol=CRLF --no-backup -f -q tests/tidy/tmp-fixtures/end-of-line-overriden-crlf
+  run php tidy.php --eol=CRLF -f -q tests/tidy/tmp-fixtures/end-of-line-overriden-crlf
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 
@@ -39,10 +39,10 @@ setup() {
 @test "Fix end of lines using manual EOL short option syntax. No whitespace fixes, no redundant EOL fixes, no missing final new lines added." {
   load fixtures
 
-  run php tidy.php -e=LF --no-backup -f -q tests/tidy/tmp-fixtures/end-of-line-overriden-lf
+  run php tidy.php -e=LF -f -q tests/tidy/tmp-fixtures/end-of-line-overriden-lf
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
-  
+
   files=`find tests/tidy/expected-fixtures/end-of-line-overriden-lf -type f`
 
   for file in $files; do

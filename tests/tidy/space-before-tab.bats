@@ -5,7 +5,7 @@ setup() {
 }
 
 @test "Clean spaces before tabs" {
-  run php tidy.php --clean-space-before-tab --no-backup -f -q tests/tidy/tmp-fixtures/space-before-tab
+  run php tidy.php --clean-space-before-tab -f -q tests/tidy/tmp-fixtures/space-before-tab
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 

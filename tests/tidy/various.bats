@@ -5,7 +5,7 @@ setup() {
 }
 
 @test "Whitespace fixes, no EOL fixes" {
-  run php tidy.php --trim-trailing-whitespace --no-backup -f -q tests/tidy/tmp-fixtures/whitespace
+  run php tidy.php --trim-trailing-whitespace -f -q tests/tidy/tmp-fixtures/whitespace
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 
@@ -20,7 +20,7 @@ setup() {
 }
 
 @test "EOL fixes, no whitespace fixes" {
-  run php tidy.php --trim-final-newlines --no-backup -f -q tests/tidy/tmp-fixtures/eol
+  run php tidy.php --trim-final-newlines -f -q tests/tidy/tmp-fixtures/eol
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 

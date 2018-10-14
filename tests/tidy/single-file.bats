@@ -5,7 +5,7 @@ setup() {
 }
 
 @test "testing tidy.php tidying a single file" {
-  run php tidy.php --trim-trailing-whitespace --eol --no-backup -f -q tests/tidy/tmp-fixtures/phpt-w/test_2.phpt
+  run php tidy.php --trim-trailing-whitespace --eol -f -q tests/tidy/tmp-fixtures/phpt-w/test_2.phpt
   [ "$status" -eq 0 ]
   [ "$output" = "" ]
 
