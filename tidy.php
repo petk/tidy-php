@@ -801,7 +801,7 @@ function trimFinalNewlines(string $content, int $max = 1): string
 }
 
 /**
- * Get end of line based on the prevailing LF, CRLF or CR newline characters.
+ * Get EOL based on the prevailing LF, CRLF or CR newline characters.
  */
 function getPrevailingEol(string $content): string
 {
@@ -1569,7 +1569,7 @@ function init(array $argv): int
     $output .= '*'.count($files).'* file(s) checked, ';
     $output .= '*'.countSkipped().'* file(s) skipped ';
     $output .= 'in '.$time.' sec ';
-    $output .= 'and consumed '.(round(memory_get_peak_usage() / 1024 / 1024, 3)).' MB memory';
+    $output .= 'and '.(round(memory_get_peak_usage() / 1024 / 1024, 3)).' MB memory consumed.';
 
     output($output);
 
