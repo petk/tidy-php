@@ -792,7 +792,7 @@ function trimFinalNewlines(string $content, int $max = 1): string
     $trimmed = rtrim($content, "\r\n");
 
     // Empty content doesn't need one final newline when max = 1
-    if ($trimmed === '' && $max === 1) {
+    if ('' === $trimmed && 1 === $max) {
         $max = 0;
     }
 
