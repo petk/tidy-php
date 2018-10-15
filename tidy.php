@@ -1275,10 +1275,8 @@ function tidyPhpTestFile(string $file): array
             $rules['max_newlines'] = 1;
         }
 
-        // Certain sections are newlines sensitive
-        if (in_array($sectionRealName, [
-            '--EXPECTHEADERS--',
-        ], true)) {
+        // Edge case. --EXPECTHEADERS-- sections can have a single newline
+        if ('--EXPECTHEADERS--' === $sectionRealName && '' === trim($buffer, "\r\n")) {
             $rules['trim_final_newlines'] = false;
             $rules['trim_leading_newlines'] = false;
         }
@@ -1292,6 +1290,7 @@ function tidyPhpTestFile(string $file): array
         if ('' === trim($buffer) && $opt['verbose'] >= 1 && !in_array($sectionRealName, [
                 '--EXPECTHEADERS--',
                 '--EXPECT--',
+                '--CGI--',
             ], true)
         ) {
             output('*WARN*  '.relative($file).': *'.$sectionRealName.' empty*');
