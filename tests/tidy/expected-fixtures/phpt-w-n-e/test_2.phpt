@@ -8,5 +8,6 @@ if (false) {
 }
 //last line comment
 ?>
+
 --EXPECT--
 Hello World

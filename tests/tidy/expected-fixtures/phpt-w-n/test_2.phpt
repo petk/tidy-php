@@ -12,6 +12,7 @@ if (false) {
 }
 //last line comment
 ?>
+
 --EXPECT--
 
 
