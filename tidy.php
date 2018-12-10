@@ -60,10 +60,10 @@ function help(): string
     - *core.autocrlf = false* or unspecified
       This is Git default behavior. The *core.eol* is the EOL character for
       files in the working tree if there is *text* attribute set in the
-      .gitattributes. Default *core.eol* is native. When the *text*
-      attribute is unspecified, text files checked out from the repository keep
-      the original EOL in the working tree. Text files with LF or CRLF committed
-      back to the repository aren't normalized to LF and are tracked as are.
+      .gitattributes. Default *core.eol* is native. When the *text* attribute is
+      unspecified, text files checked out from the repository keep the original
+      EOL in the working tree. Text files with LF or CRLF committed back to the
+      repository aren't normalized to LF and are tracked as are.
     - *core.autocrlf = input*
       This overwrites *core.eol*. Text files checked out from the repository
       keep original EOL in the working tree. Text files with CRLF are normalized
@@ -108,7 +108,7 @@ function help(): string
     | native               | LF    |                |
     | LF                   | LF    | eol=lf         |
     | CRLF                 | CRLF  | eol=crlf       |
-    | mixed                | mixed | -text          |
+    | file with mixed EOLs | mixed | -text          |
     +----------------------+-------+----------------+
 
     This script uses some of these Git settings to determine the default EOL,
@@ -298,8 +298,8 @@ function getBlacklist(string $path): array
         '/^win32\/php7ts\_cli\.rc$/',
 
         // Known file types to exclude
-        '/^.*tests\/.*\.txt$/',
         '/^.*tests\/.*\.res$/',
+        '/^.*tests\/.*\.txt$/',
         '/^.*tests\/.*\.xsl$/',
         '/^.*tests\/.*\.wsdl$/',
 
@@ -722,8 +722,7 @@ function prompt(): void
 }
 
 /**
- * Trim trailing spaces and tabs from each line including or without the final
- * newline trimmed.
+ * Trim trailing spaces and tabs from each line.
  */
 function trimTrailingWhitespace(string $content): string
 {
