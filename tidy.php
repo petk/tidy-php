@@ -3,9 +3,7 @@
 
 /*
   +----------------------------------------------------------------------+
-  | PHP Version 7                                                        |
-  +----------------------------------------------------------------------+
-  | Copyright (c) 1997-2018 The PHP Group                                |
+  | Copyright (c) The PHP Group                                          |
   +----------------------------------------------------------------------+
   | This source file is subject to version 3.01 of the PHP license,      |
   | that is bundled with this package in the file LICENSE, and is        |
@@ -215,8 +213,8 @@ function help(): string
     `php tidy.php -e=LF -f path`      Convert newlines to LF style
     `php tidy.php -vv path`           Check and list more info about files
 
-  Latest version <https://git.php.net/?p=php-src.git;a=blob;f=scripts/dev/tidy.php>
-  Report bugs to <https://bugs.php.net>
+  Latest version <https://github.com/petk/tidy-php>
+  Report bugs to <https://github.com/petk/tidy-php/issues>
 HELP;
 }
 
