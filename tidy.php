@@ -418,22 +418,22 @@ function options(array $overrides = [], array $argv = []): array
             case 'h':
             case 'help':
                 $opt['help'] = true;
-            break;
+                break;
             case 'w':
             case 'trim-trailing-whitespace':
                 $opt['trim_trailing_whitespace'] = true;
-            break;
+                break;
             case 'N':
             case 'trim-final-newlines':
                 $opt['trim_final_newlines'] = true;
                 if (false !== $value && preg_match('/^[0-9]+$/', $value)) {
                     $opt['max_newlines'] = (int) $value;
                 }
-            break;
+                break;
             case 'n':
             case 'insert-final-newline':
                 $opt['insert_final_newline'] = true;
-            break;
+                break;
             case 'e':
             case 'eol':
                 if (is_string($value) && in_array(strtolower($value), ['lf', 'crlf'], true)) {
@@ -441,39 +441,39 @@ function options(array $overrides = [], array $argv = []): array
                     $opt['default_eol'] = $default[strtolower($value)];
                 }
                 $opt['eol'] = true;
-            break;
+                break;
             case 'l':
             case 'trim-leading-newlines':
                 $opt['trim_leading_newlines'] = true;
-            break;
+                break;
             case 's':
             case 'clean-space-before-tab':
                 $opt['clean_space_before_tab'] = true;
-            break;
+                break;
             case 'f':
             case 'fix':
                 $opt['fix'] = true;
-            break;
+                break;
             case 'no-colors':
                 $opt['colors'] = false;
-            break;
+                break;
             case 'q':
             case 'quiet':
                 $opt['quiet'] = true;
                 $opt['yes'] = true;
                 $opt['backup'] = false;
-            break;
+                break;
             case 'y':
             case 'yes':
                 $opt['yes'] = true;
                 $opt['backup'] = false;
-            break;
+                break;
             case 'v':
                 $opt['verbose'] = (is_array($value)) ? count($value) : 1;
-            break;
+                break;
             case 'verbose':
                 $opt['verbose'] = 3;
-            break;
+                break;
         }
     }
 
@@ -888,7 +888,7 @@ function getDefaultEol(?string $file = null): string
         return $eol;
     }
 
-    if (in_array(relative($file), getCrlfFiles($opt['path'], true))) {
+    if (in_array(relative($file), getCrlfFiles($opt['path'], true), true)) {
         return "\r\n";
     }
 
@@ -1487,21 +1487,21 @@ function tidyPhpCode(string $source, callable $callback): string
                     } else {
                         $buffer .= $text;
                     }
-                break;
+                    break;
                 case T_DOC_COMMENT:
                     $buffer .= $callback($text);
-                break;
+                    break;
                 case T_START_HEREDOC:
                     $buffer .= $text;
                     $content .= $callback($buffer);
 
                     $buffer = '';
-                break;
+                    break;
                 case T_END_HEREDOC:
                     $buffer .= $text;
                     $content .= $buffer;
                     $buffer = '';
-                break;
+                    break;
                 case T_CONSTANT_ENCAPSED_STRING:
                     $content .= $callback($buffer);
 
@@ -1514,10 +1514,10 @@ function tidyPhpCode(string $source, callable $callback): string
 
                     $content .= $text;
                     $buffer = '';
-                break;
+                    break;
                 default:
                     $buffer .= $text;
-                break;
+                    break;
             }
         }
     }
