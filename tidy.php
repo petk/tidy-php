@@ -566,7 +566,7 @@ function getInvalidOptions(string $shortOptions, array $longOptions, array $argv
     }
 
     if (!empty($unknown)) {
-        return "invalid option(s) '".implode($unknown, ', ')."'";
+        return "invalid option(s) '".implode(', ', $unknown)."'";
     }
 
     return null;
