@@ -1,0 +1,19 @@
+name: Run tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run tests
+        run: ./tests/test.sh
+
+      - name: Run coding style check
+        run: ./tests/php-cs-fixer.sh

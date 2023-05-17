@@ -1,6 +1,6 @@
 # tidy.php
 
-[![Build Status](https://travis-ci.org/petk/tidy-php.svg?branch=master)](https://travis-ci.org/petk/tidy-php)
+![Test workflow](https://github.com/petk/tidy-php/actions/workflows/tests.yaml/badge.svg)
 
 Script to tidy whitespace - trailign spaces and tabs, convert end of lines to
 LF or CRLF, trim trailing final newlines into a single newline and similar.
