@@ -888,7 +888,7 @@ function getDefaultEol(?string $file = null): string
         return $eol;
     }
 
-    if (in_array(relative($file), getCrlfFiles($opt['path'], true), true)) {
+    if (in_array(relative($file), getCrlfFiles($opt['path']), true)) {
         return "\r\n";
     }
 
