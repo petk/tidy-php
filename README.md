@@ -2,7 +2,7 @@
 
 ![Test workflow](https://github.com/petk/tidy-php/actions/workflows/tests.yaml/badge.svg)
 
-Script to tidy whitespace - trailign spaces and tabs, convert end of lines to
+Script to tidy whitespace - trailing spaces and tabs, convert end of lines to
 LF or CRLF, trim trailing final newlines into a single newline and similar.
 
 ## About
